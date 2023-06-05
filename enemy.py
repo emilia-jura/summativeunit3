@@ -20,8 +20,10 @@ class Enemy(pygame.sprite.Sprite):
 
     # and update so that the enemy's x and y coordinates change randomly
     def update(self):
+        # constantly changing location
         self.rect.x += random.randint(-5, 5)
         self.rect.y += random.randint(-5, 5)
+        # stops them from leaving the screen
         if self.rect.left < 0:
             self.rect.left = 0
         if self.rect.right > screen_width:

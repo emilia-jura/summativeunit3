@@ -28,15 +28,16 @@ class Level:
         self.enemies = pygame.sprite.Group()
         self.setup_level(level_data)
         life = self.player.sprite.life
+        # text setup
         font = pygame.font.Font("freesansbold.ttf", 32)
         text = font.render(" Gold Left: " + str(life), True, "#5A464C", "#FFFACC")
         text1 = font.render(" Score: " + str(score) + " ", True, "#5A464C", "#FFFACC")
-
+        # music loop
         pygame.mixer.music.load("sounds/music_zapsplat_game_music_action_breakbeat_fast_electronic_busy_arpeggios_017.mp3")
         pygame.mixer.music.play(-1)
 
     def setup_level(self, layout):
-
+        # generating tiles and spawning the player
         for row_index, row in enumerate(layout):
             for cell_index, cell in enumerate(row):
                 x = cell_index * tile_size
@@ -49,7 +50,7 @@ class Level:
                     player_sprite = Player((x, y))
                     self.player.add(player_sprite)
                     print(x/tile_size, y/tile_size)
-
+        # spawn 5 enemies
         for i in range(5):
             enemy = Enemy((random.randint(300, screen_width), random.randint(0, screen_height)))
             self.enemies.add(enemy)
@@ -57,6 +58,7 @@ class Level:
 
     def run(self):
         global life, text, font, text1, score
+        # generate all characters
         self.tiles.draw(self.display_surface)
         self.player.update(self.tiles, self.enemies)
         # add this back for them to move randomly
@@ -72,18 +74,21 @@ class Level:
         score = self.player.sprite.score
         text1 = font.render(" Score: " + str(score) + " ", True, "#5A464C", "#FFFACC")
         self.display_surface.blit(text1, (550, 0))
-
+        # if player collides with enemy
         if len(collide) > 0:
             self.player.sprite.removelife()
             life = self.player.sprite.life
             text = font.render(" Gold Left: " + str(life), True, "#5A464C", "#FFFACC")
             self.display_surface.blit(text, (0, 0))
+        # if player dies
         if self.player.sprite.life == 0:
             self.gameover1()
+        # if player kills all enemies
         if len(self.enemies) == 0:
             self.gameover1()
 
     def gameover1(self):
+        # variables that are used in main
         self.end = True
         self.hs = score
         self.xlife = life

@@ -23,6 +23,7 @@ class Bullet(pygame.sprite.Sprite):
     def horizontal_movement_collision1(self, tiles):
         for tile in tiles.sprites():
             if tile.rect.colliderect(self.rect):
+                # stopping bullet from going through tiles
                 if self.direction.x < 0:
                     self.rect.left = tile.rect.right
                     self.kill()

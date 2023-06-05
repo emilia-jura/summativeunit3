@@ -13,7 +13,7 @@ print(screen_height)
 play = True
 score = 0
 
-
+# main game loop
 def game():
     global play, score
     app.hide()
@@ -33,7 +33,7 @@ def game():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
-
+        # if player dies or kills all enemies
         if level.end:
             score = level.hs
             play = False
@@ -60,6 +60,7 @@ def gameover():
     pygame.quit()
     app.show()
     play_button.text = "PLAY AGAIN"
+    # shows the players final score
     notif = Window(app, width=600, height=352, title="Gameover")
     notif.bg = "#B5D6B2"
     note = Text(notif, text="Gameover")
@@ -71,7 +72,7 @@ def gameover():
     msg.text_size = 24
     msg.font = "freesansbold.ttf"
 
-
+# guizero layout
 block1 = Box(app, height=352, width="fill", align="top")
 
 block2 = Box(app, height=352, width="fill", align="top")

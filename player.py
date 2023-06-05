@@ -83,6 +83,7 @@ class Player(pygame.sprite.Sprite):
         else:
             self.direction.x = 0
             self.direction.y = 0
+        # preventing multiple bullets from being shot at once
         if keys[pygame.K_SPACE] and not self.firing:
             self.fire()
             self.firing = True
@@ -107,6 +108,7 @@ class Player(pygame.sprite.Sprite):
         return self.life
 
     def editscore(self):
+        # play sound effect when enemy is killed
         pygame.mixer.Sound.play(self.hit)
         if self.life < 50:
             self.score += 10
@@ -122,6 +124,7 @@ class Player(pygame.sprite.Sprite):
         self.horizontal_movement_collision(tiles)
         self.vertical_movement_collision(tiles)
         self.bullets.update(tiles)
+        # stops player from leaving the screen
         if self.rect.left < 0:
             self.rect.left = 0
         if self.rect.right > screen_width:
