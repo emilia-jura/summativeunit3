@@ -1,3 +1,12 @@
+'''
+This is a code by Emilia Juraszek
+This game is inspired by the arcade game 'Dig Dug' and follows
+the same ideas but with a different execution. In this
+version, the main charcter is called Baxter and the context is that
+he has stolen gold from the king, and is trying to run away
+but the king has let out the 'Burrow Beasts'. The aim of the game
+is to shoot all the Burrow Beasts without running out of gold.
+'''
 import pygame
 import sys
 from settings import *
