@@ -1,5 +1,5 @@
 '''
-This is a code by Emilia Juraszek
+This is a code by Emilia Juraszek.
 This game is inspired by the arcade game 'Dig Dug' and follows
 the same ideas but with a different execution. In this
 version, the main charcter is called Baxter and the context is that
